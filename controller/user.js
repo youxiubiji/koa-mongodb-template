@@ -72,7 +72,7 @@ const UserLogin = async ctx => {
 const UserInfo = async ctx => {
     try {
         let token = ctx.header.authorization
-        let res = await userUtil.verifyToken(token.split(' ')[1])
+        let res = await userUtil.verifyToken(token.replace('Bearer ', ''))
         ctx.body = {
             code: 200,
             data: res,

@@ -1,0 +1,22 @@
+[2021-12-30T15:54:47.793] [ERROR] application - ReferenceError: a is not defined
+    at UserInfo (C:\D\koa-mongodb-template\controller\user.js:73:5)
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at C:\D\koa-mongodb-template\node_modules\@koa\router\lib\router.js:372:16
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:34:12
+    at dispatch (C:\D\koa-mongodb-template\node_modules\@koa\router\lib\router.js:377:31)
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at verifyParam (C:\D\koa-mongodb-template\node_modules\koa-parameter\index.js:52:13)
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at bodyParser (C:\D\koa-mongodb-template\node_modules\koa-bodyparser\index.js:95:11)
+[2021-12-30T15:55:04.176] [ERROR] application - ReferenceError: a is not defined
+    at UserInfo (C:\D\koa-mongodb-template\controller\user.js:73:5)
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at C:\D\koa-mongodb-template\node_modules\@koa\router\lib\router.js:372:16
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:34:12
+    at dispatch (C:\D\koa-mongodb-template\node_modules\@koa\router\lib\router.js:377:31)
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at verifyParam (C:\D\koa-mongodb-template\node_modules\koa-parameter\index.js:52:13)
+    at dispatch (C:\D\koa-mongodb-template\node_modules\koa-compose\index.js:42:32)
+    at bodyParser (C:\D\koa-mongodb-template\node_modules\koa-bodyparser\index.js:95:11)
