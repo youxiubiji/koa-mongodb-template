@@ -5,11 +5,64 @@ const router = new Router({
     prefix: '/users',
 })
 
-//用户注册
+/**
+ * @swagger
+ * /users/register:
+ *   post:
+ *     summary: 用户注册
+ *     tags:
+ *      - user
+ *     parameters:
+ *       - name: username
+ *         description: 用户账户
+ *         required: true
+ *         in: formData
+ *         type: string
+ *       - name: password
+ *         description: 用户密码
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description:
+ */
 router.post('/register', UserRegister)
-//用户登录
+
+/**
+ * @swagger
+ * /users/login:
+ *   post:
+ *     summary: 用户登录
+ *     tags:
+ *      - user
+ *     parameters:
+ *       - name: username
+ *         description: 用户账户
+ *         required: true
+ *         in: formData
+ *         type: string
+ *       - name: password
+ *         description: 用户密码
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description:
+ */
 router.post('/login', UserLogin)
-//用户信息
+/**
+ * @swagger
+ * /users/info:
+ *   get:
+ *     summary: 用户信息
+ *     tags:
+ *      - user
+ *     responses:
+ *       200:
+ *         description:
+ */
 router.get('/info', UserInfo)
 
 module.exports = router

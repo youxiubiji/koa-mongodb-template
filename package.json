@@ -34,7 +34,9 @@
     "koa-log4": "^2.3.2",
     "koa-parameter": "^3.0.1",
     "koa-static": "^5.0.0",
-    "mongoose": "^6.1.4"
+    "koa2-swagger-ui": "^5.3.0",
+    "mongoose": "^6.1.4",
+    "swagger-jsdoc": "^6.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

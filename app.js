@@ -11,6 +11,20 @@ const { token: tokenConfig } = require('./utils/config')
 
 const { logger, accessLogger } = require('./logger')
 
+const swagger = require('./utils/swagger') // 存放swagger.js的位置，可以自行配置，我放在了根目录
+const { koaSwagger } = require('koa2-swagger-ui')
+
+// 接口文档配置
+app.use(swagger.routes(), swagger.allowedMethods())
+app.use(
+    koaSwagger({
+        routePrefix: '/swagger', // 接口文档访问地址
+        swaggerOptions: {
+            url: '/swagger.json', // example path to json 其实就是之后swagger-jsdoc生成的文档地址
+        },
+    })
+)
+
 // mongodb
 MongoConnect()
 
