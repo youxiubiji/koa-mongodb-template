@@ -24,11 +24,14 @@
   "homepage": "https://github.com/youxiubiji/koa-template#readme",
   "dependencies": {
     "@koa/router": "^10.1.1",
+    "bcryptjs": "^2.4.3",
     "debug": "^4.3.3",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-json": "^2.0.2",
     "koa-jwt": "^4.0.3",
+    "koa-parameter": "^3.0.1",
     "mongoose": "^6.1.4"
   },
   "devDependencies": {
