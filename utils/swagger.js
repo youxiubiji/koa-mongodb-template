@@ -2,20 +2,28 @@ const router = require('@koa/router')() //引入路由函数
 const swaggerJSDoc = require('swagger-jsdoc')
 const path = require('path')
 const swaggerDefinition = {
+    //swagger-ui显示的基本信息，如标题、版本、描述
     info: {
         title: '接口文档',
         version: '1.0.0',
         description: 'API文档',
     },
+    // 安全设置，支持apikey的方式直接定义http请求头
     securityDefinitions: {
-        JWT: {
+        bearerAuth: {
             type: 'apiKey',
-            description: 'JWT authorization of an API',
             name: 'Authorization',
             in: 'header',
         },
     },
+    // 声明后，每个api右上角会出现一个小锁，支持输入API Key
+    security: [
+        {
+            bearerAuth: [],
+        },
+    ],
     host: 'localhost:3000', // 想着改这里，如果不修改，那么接口文档访问地址为：localhost:3000/swagger
+    // 根路由
     basePath: '/', // Base path (optional)
     schemes: ['http', 'https'],
 }

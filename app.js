@@ -86,7 +86,9 @@ app.use(parameter(app))
 
 // router
 const users = require('./routes/user')
+const upload = require('./routes/upload')
 app.use(users.routes(), users.allowedMethods())
+app.use(upload.routes(), upload.allowedMethods())
 
 // 应用日志
 app.on('error', (err, ctx) => {
