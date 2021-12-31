@@ -1,59 +1,65 @@
-// const multer = require('@koa/multer')
-
-// const fs = require('fs')
-
-// const path = require('path')
-
-// const Router = require('@koa/router')
-
-// const router = new Router({
-//     prefix: '/upload',
-// })
-
-// let upload = multer({
-//     //设置文件存储位置
-//     destination: function (req, file, cb) {
-//         let date = new Date()
-//         let year = date.getFullYear()
-//         let month = date.getMonth() + 1
-//         let day = date.getDay()
-//         let dir = `./public/uploads/${year}/${month}/${day}`
-
-//         //判断目录是否存在
-//         if (!fs.existsSync(dir)) {
-//             fs.mkdirSync(dir, {
-//                 recursive: true,
-//             })
-//         }
-//         cb(null, dir)
-//     },
-//     filename: function (req, file, cb) {
-//         //设置上传文件名称
-//         let fileName = file.filename + '-' + Date.now() + path.extname(file.originalname)
-//         cb(null, fileName)
-//     },
-// })
-
-// router.post('/uploadfile', upload.single('file'), async ctx => {
-//     ctx.body = {
-//         code: 200,
-//         data: ctx.req.file,
-//     }
-// })
-
-// module.exports = router
-
-const Router = require('@koa/router')
 const multer = require('@koa/multer')
+const Router = require('@koa/router')
 
-const router = new Router()
-const upload = multer();
+const router = new Router({
+    prefix: '/upload',
+})
 
-router.post('/upload-single-file', upload.single('avatar'), ctx => {
-    console.log('ctx.request.file', ctx.request.file)
-    console.log('ctx.file', ctx.file)
-    console.log('ctx.request.body', ctx.request.body)
-    ctx.body = 'done'
+//上传文件存放路径、及文件命名
+const storage = multer.diskStorage({
+    destination: 'public/uploads/' + new Date().getFullYear() + (new Date().getMonth() + 1) + new Date().getDate(),
+    filename(ctx, file, cb) {
+        const filenameArr = file.originalname.split('.')
+        cb(null, Date.now() + '.' + filenameArr[filenameArr.length - 1])
+    },
+})
+
+//文件上传限制
+const limits = {
+    fields: 10, //非文件字段的数量
+    fileSize: 2 * 1024 * 1024, //文件大小 单位 M
+    files: 1, //文件数量
+}
+
+const upload = multer({ storage, limits })
+
+/**
+ * @swagger
+ * /upload/uploadfile:
+ *   post:
+ *     summary: 单文件上传
+ *     tags:
+ *      - upload
+ *     parameters:
+ *       - name: file
+ *         description: 上传文件
+ *         required: true
+ *         in: formData
+ *         type: file
+ *     responses:
+ *       "200":
+ *         description: "success"
+ *       "400":
+ *         description: "fial"
+ *       "401":
+ *         description: "use Authorization header to get access"
+ *       "500":
+ *         description: "error"
+ */
+router.post('/uploadfile', upload.single('file'), async ctx => {
+    try {
+        const uploadUrl = `http://${ctx.request.header.host}/`
+        const url = uploadUrl + ctx.request.file.path
+        ctx.body = {
+            code: 200,
+            data: url.replace(/\\/g, '/').replace(/public\//, ''),
+        }
+    } catch (error) {
+        ctx.body = {
+            code: 400,
+            msg: '上传失败',
+        }
+    }
 })
 
 module.exports = router

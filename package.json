@@ -37,6 +37,7 @@
     "koa-static": "^5.0.0",
     "koa2-swagger-ui": "^5.3.0",
     "mongoose": "^6.1.4",
+    "multer": "^1.4.4",
     "swagger-jsdoc": "^6.1.0"
   },
   "devDependencies": {

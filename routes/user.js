@@ -24,8 +24,14 @@ const router = new Router({
  *         required: true
  *         type: string
  *     responses:
- *       200:
- *         description:
+ *       "200":
+ *         description: "success"
+ *       "400":
+ *         description: "fial"
+ *       "401":
+ *         description: "use Authorization header to get access"
+ *       "500":
+ *         description: "error"
  */
 router.post('/register', UserRegister)
 
@@ -48,8 +54,14 @@ router.post('/register', UserRegister)
  *         required: true
  *         type: string
  *     responses:
- *       200:
- *         description:
+ *       "200":
+ *         description: "success"
+ *       "400":
+ *         description: "fial"
+ *       "401":
+ *         description: "use Authorization header to get access"
+ *       "500":
+ *         description: "error"
  */
 router.post('/login', UserLogin)
 /**
@@ -60,8 +72,14 @@ router.post('/login', UserLogin)
  *     tags:
  *      - user
  *     responses:
- *       200:
- *         description:
+ *       "200":
+ *         description: "success"
+ *       "400":
+ *         description: "fial"
+ *       "401":
+ *         description: "use Authorization header to get access"
+ *       "500":
+ *         description: "error"
  */
 router.get('/info', UserInfo)
 

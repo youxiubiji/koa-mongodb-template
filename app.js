@@ -11,8 +11,11 @@ const { token: tokenConfig } = require('./utils/config')
 
 const { logger, accessLogger } = require('./logger')
 
-const swagger = require('./utils/swagger') // 存放swagger.js的位置，可以自行配置，我放在了根目录
+const swagger = require('./utils/swagger') // 存放swagger.js的位置，可以自行配置
 const { koaSwagger } = require('koa2-swagger-ui')
+
+//静态文件
+app.use(koaStatic(__dirname + '/public'))
 
 // 接口文档配置
 app.use(swagger.routes(), swagger.allowedMethods())
@@ -74,9 +77,6 @@ app.use(
 
 // json美化
 app.use(json())
-
-//静态文件
-app.use(koaStatic(__dirname + '/public'))
 
 // Post请求
 app.use(bodyParser())
