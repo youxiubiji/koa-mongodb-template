@@ -5,6 +5,7 @@ const bodyParser = require('koa-bodyparser')
 const parameter = require('koa-parameter')
 const koaJwt = require('koa-jwt') //路由权限控制
 const koaStatic = require('koa-static')
+const cors = require('koa2-cors'); //跨域处理
 
 const MongoConnect = require('./db')
 const { token: tokenConfig } = require('./utils/config')
@@ -13,6 +14,9 @@ const { logger, accessLogger } = require('./logger')
 
 const swagger = require('./utils/swagger') // 存放swagger.js的位置，可以自行配置
 const { koaSwagger } = require('koa2-swagger-ui')
+
+// 处理跨域，放到中间件的最前面
+app.use(cors());
 
 //静态文件
 app.use(koaStatic(__dirname + '/public'))
